@@ -5,3 +5,5 @@ config.backup
 description
 HEAD
 COMMITMESSAGE
+node_modules
+objects

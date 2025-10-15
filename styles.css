@@ -1,0 +1,50 @@
+body {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+}
+
+.block {
+    display: flex;
+    flex-direction: column;
+    align-items: space-between;
+}
+
+.block h3 {
+    margin: 0;
+    margin-left: 10px;
+}
+
+.block h4 {
+    margin-left: 10px;
+}
+
+.block p {
+    margin: 10px;
+    box-sizing: border-box;
+}
+
+.tasks {
+    display: flex;
+}
+
+.task{
+    border: 1px solid green;
+    width: 360px;
+    height: 380px;
+    display: flex;
+    align-items: space-between;
+    flex-direction: column;
+    margin-right: 20px;
+    box-sizing: border-box;
+}
+
+.notes {
+    font-style: italic;
+}
+
+button {
+    margin: 10px 0;
+    width: 200px;
+    align-self: center;
+}
