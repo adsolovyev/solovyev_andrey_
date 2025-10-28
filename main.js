@@ -41,7 +41,6 @@ function task_1() {
 // ● Реализовать функцию которая заменяет в строке str, все вхождения
 // подстроки find, на подстроку replace.
 
-console.log('=====================  Практика, слайд 35:');
 function random_value() {
     // непосредственно функция для расчета рандомного целого из диапозона:
     // округляем меньшее до большего и большее до меньшего, чтобы не выпасть из диапозона
@@ -50,18 +49,18 @@ function random_value() {
     // +мин - сдвиг, 
     // а т.к. хотим целое, снова округляем до меньшего
     function getRandom(min_value, max_value) {
-        min = Math.ceil(min_value);
-        max = Math.floor(max_value);
+        const min = Math.ceil(min_value);
+        const max = Math.floor(max_value);
         return Math.floor(Math.random()*(max - min + 1)) + min; 
     }
 
     // могли использовать parseInt на ввод, тогда без округления в формуле, но для этого лучше подойдет вторая задача из блока
-    const min_value = prompt('Введите min: ');
-    const max_value = prompt('Введите max: ');
+    const min_value = Number(prompt('Введите min: '));
+    const max_value = Number(prompt('Введите max: '));
     
     console.log('Задача 1: поиск случайного целого числа из диапозона пользователя')
     if (isNaN(min_value) || isNaN(max_value)) {
-        console.log('Введены не числа...');
+        console.log(`По крайней мере одно из значений [${min_value}] [${max_value}] не является числом.`);
         return;
     } else if (Math.floor(min_value) == Math.floor(max_value)) {
         console.log(`В указанном диапозоне [${min_value}, ${max_value}] нет целого числа.`);
@@ -76,7 +75,7 @@ function random_value() {
     }
 }
 
-// random_value();
+random_value();
 
 // Реализовать функцию которая будет определять, в каком регистре
 // записан n элемент переданной строки, если в верхнем то вернуть true, в
@@ -85,20 +84,27 @@ function random_value() {
 function n_symbol_registry() {
 
     function isUpperSymbol(text, index) {
+        if (isNaN(index)) {
+            console.log(`Введённый индекс [${index}] не является числом.`);
+            return false;
+        }
         if (index < 0 || index >= text.length) {
-            console.log(`Указанный индекс ${index} вне диапозона указанной строки[${text}]`);
+            console.log(`Указанный индекс ${index} вне диапазона указанной строки[${text}]`);
             return false;
         }
         const index_symbol = text[index];
-        console.log(typeof(index_symbol));
-        if (index_symbol === index_symbol.toUpperCase()) { 
-            console.log(`Для указанной строки ${text} символ под номером ${index} существует, равен "${index_symbol}" и находится в верхнем регистре`);
-            return true;
+        if (index_symbol.toLowerCase() !== index_symbol.toUpperCase()) {
+            if (index_symbol === index_symbol.toUpperCase()) {
+                console.log(`В указанной строке [${text}] символ под номером [${index}] существует, равен [${index_symbol}] и находится в верхнем регистре`);
+                return true;
+            } else {
+                console.log(`В указанной строке [${text}] символ под номером [${index}] существует, равен [${index_symbol}] и находится в нижнем регистре`);
+                return false;
+            }
         } else {
-            console.log(`Для указанной строки ${text} символ под номером ${index} существует, равен "${index_symbol}" и находится в нижнем регистре`);
+            console.log(`В указанной строке [${text}] символ под номером [${index}] существует, равен [${index_symbol}] и не является символом, обладающим регистром`);
             return false;
         }
-
     }
 
     const text = prompt('Введите строку: ');
@@ -120,15 +126,15 @@ function text_replacement() {
 
         if (str.length === 0) {
             console.log(`Cтрока str - пустая.`);
-            return;
+            return false;
         }
         if (find.length === 0) {
             console.log(`Cтрока find - пустая.`);
-            return;
+            return false;
         }
         if (str.includes(find) === false) {
             console.log(`Cтрока [${str}] не содержит [${find}].`);
-            return;
+            return false;
         }
         // это проще сделать через find+replace, но это уже массивы, в презентации их не было
         // создаем пустую строку, слайсим в нее все, что не подлежит замене, иначе добавляем replace и двигаем индекс на длину find, чтобы не попасть в бесконечный цикл при замене какого-нибудь q на qq 
@@ -142,6 +148,7 @@ function text_replacement() {
             pos = index + find_length;
         }
         console.log(`Для строки [${str}] запросили замену всех [${find}] на [${replace}]. Результат:\n`, result);
+        return true;
     }
 
     const str = prompt('Введите str - начальную строку:');
@@ -151,7 +158,6 @@ function text_replacement() {
     console.log('Задача 3: Произвести замену подстроки на подстроку в строке пользователя.');
 
     console.log(replacement(str, find, replace));
-    return;
 }
 
-text_replacement();
+// text_replacement();
