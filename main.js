@@ -10,24 +10,26 @@
 // ● Удалить свойство содержащее год выпуска.
 // ● Вывести в консоль объект myFavoriteFilm и проанализировать его
 // структуру.
+function task_1() {
+    const myFavoriteFilm = {
+        title: 'Title',
+        release_date: '01.01.01',
+        director: 'Director',
+        country: 'Country',
+    }
 
-const myFavoriteFilm = {
-    title: 'Title',
-    release_date: '01.01.01',
-    director: 'Director',
-    country: 'Country',
+    myFavoriteFilm.bank = 1231231223;
+    myFavoriteFilm.getFilmTitle = function getFilmTitle() {
+        return myFavoriteFilm.title
+    };
+    console.log('=====================  Практика, слайд 11:');
+    console.log('Проверка функции, выводящей имя: \n', myFavoriteFilm.getFilmTitle());
+
+
+    delete myFavoriteFilm.release_date;
+    console.log('Вывод объекта после всех манипуляций: \n', myFavoriteFilm);
 }
-
-myFavoriteFilm.bank = 1231231223;
-myFavoriteFilm.getFilmTitle = function getFilmTitle() {
-    return myFavoriteFilm.title
-};
-console.log('=====================  Практика, слайд 11:');
-console.log('Проверка функции, выводящей имя: \n', myFavoriteFilm.getFilmTitle());
-
-
-delete myFavoriteFilm.release_date;
-console.log('Вывод объекта после всех манипуляций: \n', myFavoriteFilm);
+// task_1();
 
 // Слайд 35
 //  ● Реализовать функцию которая будет принимать числовой диапазон в
@@ -40,7 +42,6 @@ console.log('Вывод объекта после всех манипуляци�
 // подстроки find, на подстроку replace.
 
 console.log('=====================  Практика, слайд 35:');
-// Чтобы не лезть в HTML, организую ввод через консоль, для этого импортирую стандартный модуль node.js для ввода строк
 function random_value() {
     // непосредственно функция для расчета рандомного целого из диапозона:
     // округляем меньшее до большего и большее до меньшего, чтобы не выпасть из диапозона
